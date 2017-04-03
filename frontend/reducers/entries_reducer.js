@@ -5,7 +5,7 @@ const initialState = {
     1: {
         id: 1,
         content: 'lorem ipsum',
-        create_date: new Date()
+        createDate: new Date()
     }
 }
 
