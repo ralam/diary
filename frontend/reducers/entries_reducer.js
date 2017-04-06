@@ -4,8 +4,18 @@ import merge from 'lodash/merge';
 const initialState = {
     1: {
         id: 1,
-        content: 'lorem ipsum',
-        createDate: new Date()
+        content: 'current entry',
+        create_date: new Date()
+    },
+    2: {
+        id: 1,
+        content: 'older entry',
+        create_date: new Date(2017, 4, 4)
+    },
+    3: {
+        id: 1,
+        content: 'oldest entry',
+        create_date: new Date(2017, 4, 3)
     }
 }
 
