@@ -6,6 +6,7 @@ import moment from 'moment';
 import { formatDate } from '../../util/date_util';
 import EntryItemContainer from './entry_item_container';
 import EmptyEntryItem from './empty_entry_item';
+import ActiveEntryItemContainer from './active_entry_item_container';
 
 class EntryWrapper extends React.Component{
     constructor(props) {
@@ -22,7 +23,13 @@ class EntryWrapper extends React.Component{
     getEntryFromDate(date) {
         const entryId = this.props.dates[date] || '-1';
         if(entryId === '-1') {
-            return <EmptyEntryItem date={this.state.selectedDate} />
+            if (date === this.props.today) {
+                return <ActiveEntryItemContainer hasEntry={false} />
+            } else {
+                return <EmptyEntryItem date={this.state.selectedDate} />
+            }
+        } else if (date === this.props.today) {
+            return <ActiveEntryItemContainer entry={this.props.entries[entryId]} hasEntry={true} />
         } else {
             return <EntryItemContainer entry={this.props.entries[entryId]} />
         }

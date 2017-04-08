@@ -5,7 +5,7 @@ import EntryWrapperContainer from './entry/entry_wrapper_container';
 const App = () => (
     <div>
         <p>Diary</p>
-        <EntryWrapperContainer />
+        <EntryWrapperContainer today={new Date()}/>
     </div>
 )
 
