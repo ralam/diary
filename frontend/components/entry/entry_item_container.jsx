@@ -4,8 +4,8 @@ import EntryItem from './entry_item';
 
 import { getEntryByDate } from '../../reducers/selectors';
 
-const mapStateToProps = state => ({
-    entry: getEntryByDate(state)
+const mapStateToProps = (state, {entry}) => ({
+    entry: entry
 });
 
 const mapDispatchToProps = dispatch => ({

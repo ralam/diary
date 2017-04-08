@@ -10,12 +10,12 @@ const initialState = {
     2: {
         id: 1,
         content: 'older entry',
-        create_date: new Date(2017, 4, 4)
+        create_date: new Date(2017, 3, 4)
     },
     3: {
         id: 1,
         content: 'oldest entry',
-        create_date: new Date(2017, 4, 3)
+        create_date: new Date(2017, 3, 3)
     }
 }
 

@@ -1,11 +1,11 @@
 import React from 'react';
 
-import EntryItemContainer from './entry/entry_item_container';
+import EntryWrapperContainer from './entry/entry_wrapper_container';
 
 const App = () => (
     <div>
         <p>Diary</p>
-        <EntryItemContainer />
+        <EntryWrapperContainer />
     </div>
 )
 

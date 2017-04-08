@@ -1,4 +1,7 @@
-export const allEntries = ({ entries }) => Object.keys(entries).map(id => entries[id]);
+import values from 'lodash';
+import { formatDate } from '../util/date_util'
+
+export const allEntries = ({ entries }) => entries;
 
 export const getEntryFromState = ({ entries }, date = new Date()) => {
     let matchingEntry = {
@@ -16,6 +19,15 @@ export const getEntryFromState = ({ entries }, date = new Date()) => {
     });
 
     return matchingEntry;
+}
+
+export const getDates = ({entries}) => {
+    let dates = {};
+    Object.keys(entries).forEach(id => {
+        dates[formatDate(entries[id].create_date)] = id
+    });
+
+    return dates;
 }
 
 export const getEntryByDate = ({ entries }, date = new Date()) => {

@@ -4,3 +4,5 @@ const daysMap = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday
 export const formatToHumanDate = dateObj => {
     return `${daysMap[dateObj.getDay()]}, ${monthsMap[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`
 }
+
+export const formatDate = dateObj => dateObj.toISOString().slice(0, 10);
