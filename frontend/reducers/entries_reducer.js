@@ -1,31 +1,33 @@
-import { RECEIVE_ENTRY } from  '../actions/entry_actions';
+import { RECEIVE_ENTRY, RECEIVE_ENTRIES } from  '../actions/entry_actions';
 import merge from 'lodash/merge';
 
 const initialState = {
     1: {
         id: 1,
         content: 'current entry',
-        create_date: new Date()
+        create_date: '2017-03-09'
     },
     2: {
         id: 1,
         content: 'older entry',
-        create_date: new Date(2017, 3, 4)
+        create_date: '2017-03-04'
     },
     3: {
         id: 1,
         content: 'oldest entry',
-        create_date: new Date(2017, 3, 3)
+        create_date: '2017-03-03'
     }
 }
 
-const entriesReducer = (state = initialState, action) => {
+const entriesReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
     switch(action.type) {
-        case RECEIVE_ENTRY:
-            const newEntry = {[action.entry.id]: entry};
-            return merge ({}, state, newEntry);
+        // case RECEIVE_ENTRY:
+        //     newState = merge({}, state, {entry: action.entry});
+        //     return newState;
+        case RECEIVE_ENTRIES:
+            return merge({}, action.entries);
         default:
             return state;
     }

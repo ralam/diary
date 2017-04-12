@@ -24,7 +24,7 @@ export const getEntryFromState = ({ entries }, date = new Date()) => {
 export const getDates = ({entries}) => {
     let dates = {};
     Object.keys(entries).forEach(id => {
-        dates[formatDate(entries[id].create_date)] = id
+        dates[entries[id].create_date] = id
     });
 
     return dates;
@@ -46,4 +46,16 @@ export const getEntryByDate = ({ entries }, date = new Date()) => {
     });
 
     return matchingEntry;
+}
+
+export const getIdByDate = ({ entries }, date) => {
+    let matchingId = '-1';
+    Object.keys(entries).forEach(id => {
+        const entry = entries[id];
+        if(entry.create_date === date) {
+            matchingId = entry.id;
+        }
+    })
+
+    return matchingId;
 }

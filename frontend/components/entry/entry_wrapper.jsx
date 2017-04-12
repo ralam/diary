@@ -14,6 +14,11 @@ class EntryWrapper extends React.Component{
         this.state = {
             selectedDate: formatDate(new Date())
         }
+        this.handleDateChange = this.handleDateChange.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.requestAllEntries();
     }
 
     linkState(key) {
@@ -31,17 +36,47 @@ class EntryWrapper extends React.Component{
         } else if (date === this.props.today) {
             return <ActiveEntryItemContainer entry={this.props.entries[entryId]} hasEntry={true} />
         } else {
-            return <EntryItemContainer entry={this.props.entries[entryId]} />
+            return <EntryItemContainer entry={this.props.entry} />
         }
+    }
+
+    handleDateChange(moment) {
+        const formattedDate = formatDate(moment._d);
+        const entryId = this.props.dates[formattedDate] || '-1';
+        if(entryId !== '-1') {
+            this.props.requestEntry(entryId).then(
+                this.setState({selectedDate: formattedDate})
+            )
+        } else (
+            this.setState({selectedDate: formattedDate})
+        )
+    }
+
+    getEntry() {
+        const entryId = this.props.dates[this.state.selectedDate] || '-1';
+        if(entryId === '-1') {
+            if (this.state.selectedDate === this.props.today) {
+                return <ActiveEntryItemContainer hasEntry={false} />
+            } else {
+                return <EmptyEntryItem date={this.state.selectedDate} />
+            }
+        } else if(this.props.entry === undefined) {
+            return <EmptyEntryItem date={this.state.selectedDate} />
+        } else if(this.state.selectedDate === this.props.today) {
+            return <ActiveEntryItemContainer hasEntry={true} entry={entry} />
+        } else {
+            return <EntryItemContainer date={this.state.selectedDate} />
+        }   
     }
 
     render() {
         return(
             <div>
-                { this.getEntryFromDate(this.state.selectedDate) }
+                {/*<EntryItemContainer date={this.state.selectedDate}/>*/}
+                { this.getEntry() }
                 <SingleDatePicker
                     date={moment(this.state.selectedDate)} // momentPropTypes.momentObj or null
-                    onDateChange={this.linkState('selectedDate')} // PropTypes.func.isRequired
+                    onDateChange={moment => this.handleDateChange(moment)} // PropTypes.func.isRequired
                     focused={true} // PropTypes.bool
                     onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
                     numberOfMonths={1}

@@ -4,7 +4,7 @@ class ActiveEntryItem extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            content: this.props.entry.content
+            content: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
