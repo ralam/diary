@@ -5,9 +5,7 @@ const entryDetailReducer = (state = {}, action) => {
     Object.freeze(state);
     switch(action.type) {
         case RECEIVE_ENTRY:
-            const newEntry = merge({}, state, action.entry)
-            console.log(newEntry)
-            return newEntry
+            return merge({}, state, action.entry)
         default:
             return state;
     }

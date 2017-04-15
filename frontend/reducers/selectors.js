@@ -50,12 +50,14 @@ export const getEntryByDate = ({ entries }, date = new Date()) => {
 
 export const getIdByDate = ({ entries }, date) => {
     let matchingId = '-1';
-    Object.keys(entries).forEach(id => {
-        const entry = entries[id];
-        if(entry.create_date === date) {
-            matchingId = entry.id;
-        }
-    })
+    if(entries) {
+        Object.keys(entries).forEach(id => {
+            const entry = entries[id];
+            if(entry.create_date === date) {
+                matchingId = entry.id;
+            }
+        })
+    }
 
     return matchingId;
 }

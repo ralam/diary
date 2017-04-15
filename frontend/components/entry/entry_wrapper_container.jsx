@@ -6,11 +6,10 @@ import { formatDate } from '../../util/date_util';
 import { fetchEntries, fetchEntry } from '../../actions/entry_actions';
 import { receiveDate, receiveDates } from '../../actions/date_actions';
 
-const mapStateToProps = (state, {today, entry}) => ({
+const mapStateToProps = (state, {today}) => ({
     entries: allEntries(state),
     dates: getDates(state),
-    today: formatDate(today),
-    entry: state.entry,
+    today,
     selectedDate: state.date
 });
 

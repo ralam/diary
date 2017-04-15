@@ -2,6 +2,7 @@ import React from 'react';
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import moment from 'moment';
+import { isEmpty } from 'lodash';
 
 import { formatDate } from '../../util/date_util';
 import EntryItemContainer from './entry_item_container';
@@ -37,19 +38,13 @@ class EntryWrapper extends React.Component{
     }
 
     getEntry() {
-        // console.log('dates')
-        // console.log(this.props.dates)
-        // console.log('selected date')
-        // console.log(this.props.selectedDate)
         const entryId = this.props.dates[this.props.selectedDate] || '-1';
-        if(entryId === '-1') {
-            if (this.props.selectedDate === this.props.today) {
-                return <ActiveEntryItemContainer hasEntry={false} date={this.props.selectedDate} />
-            } else {
-                return <EmptyEntryItem date={this.props.selectedDate} />
-            }
+        if (_.isEmpty(this.props.dates)) {
+            return <span>Loading</span>
         } else if(this.props.selectedDate === this.props.today) {
-            return <ActiveEntryItemContainer hasEntry={true} date={this.props.selectedDate} />
+            return <ActiveEntryItemContainer date={this.props.selectedDate} />
+        } else if (entryId === '-1') {
+            return <EmptyEntryItem date={this.props.selectedDate} />
         } else {
             return <EntryItemContainer date={this.props.selectedDate} />
         }   

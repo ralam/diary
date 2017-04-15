@@ -1,16 +1,17 @@
 import { connect } from 'react-redux';
 
 import ActiveEntryItem from './active_entry_item';
-import { fetchEntry } from '../../actions/entry_actions';
-import { getIdByDate } from '../../reducers/selectors';
+import { fetchEntries, fetchEntry } from '../../actions/entry_actions';
+import { getIdByDate, getDates } from '../../reducers/selectors';
 
-const mapStateToProps = (state, {date, hasEntry}) => ({
+const mapStateToProps = (state, {date}) => ({
     id: getIdByDate(state, date),
-    hasEntry: hasEntry,
-    entry: state.entry
+    entry: state.entry,
+    date: date
 })
 
 const mapDispatchToProps = dispatch => ({
+    requestAllEntries: () => dispatch(fetchEntries()),
     requestEntry: id => dispatch(fetchEntry(id))
 });
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { isEmpty } from 'lodash';
 
 class ActiveEntryItem extends React.Component{
     constructor(props) {
@@ -7,7 +8,9 @@ class ActiveEntryItem extends React.Component{
     }
 
     componentDidMount() {
-        this.props.requestEntry(this.props.id)
+        if(this.props.id !== '-1') {
+            this.props.requestEntry(this.props.id)
+        }
     }
 
     linkState(key) {
@@ -16,18 +19,10 @@ class ActiveEntryItem extends React.Component{
 
     handleSubmit(e) {
         e.preventDefault();
-        if (this.props.hasEntry) {
-            console.log('PUT request');
-        } else {
+        if (_.isEmpty(this.props.entry)) {
             console.log('POST request');
-        }
-    }
-
-    fetchPlaceholder() {
-        if(this.props.hasEntry) {
-            return ''
         } else {
-            return 'Today, I...'
+            console.log('PUT request');
         }
     }
 
