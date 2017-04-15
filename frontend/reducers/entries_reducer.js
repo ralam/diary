@@ -23,9 +23,6 @@ const entriesReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
     switch(action.type) {
-        // case RECEIVE_ENTRY:
-        //     newState = merge({}, state, {entry: action.entry});
-        //     return newState;
         case RECEIVE_ENTRIES:
             return merge({}, action.entries);
         default:

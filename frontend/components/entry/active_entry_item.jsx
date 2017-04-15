@@ -7,16 +7,19 @@ class ActiveEntryItem extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    // TODO: create resetEntry action to clear entry if id = -1
     componentDidMount() {
-        if(this.props.id !== '-1') {
-            this.props.requestEntry(this.props.id)
+        if(this.props.id === '-1') {
+            this.props.resetEntry();
+        } else {
+            this.props.requestEntry(this.props.id);
         }
     }
 
     linkState(key) {
         return event => this.setState({[key]: event.currentTarget.value});
     }
-
+    
     handleSubmit(e) {
         e.preventDefault();
         if (_.isEmpty(this.props.entry)) {
