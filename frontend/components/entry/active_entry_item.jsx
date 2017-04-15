@@ -4,15 +4,19 @@ import { isEmpty } from 'lodash';
 class ActiveEntryItem extends React.Component{
     constructor(props) {
         super(props);
+        this.state = {
+            content: this.props.content
+        }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // TODO: create resetEntry action to clear entry if id = -1
     componentDidMount() {
         if(this.props.id === '-1') {
             this.props.resetEntry();
+            this.setState({content: ''})
         } else {
-            this.props.requestEntry(this.props.id);
+            this.props.requestEntry(this.props.id)
+                .then(action => this.setState({content: action.entry.content}))
         }
     }
 
@@ -22,7 +26,8 @@ class ActiveEntryItem extends React.Component{
     
     handleSubmit(e) {
         e.preventDefault();
-        if (_.isEmpty(this.props.entry)) {
+        console.log(this.state.content)
+        if (this.props.id === '-1') {
             console.log('POST request');
         } else {
             console.log('PUT request');
@@ -36,7 +41,7 @@ class ActiveEntryItem extends React.Component{
                     rows='5'
                     cols='50' 
                     placeholder={this.props.entry.content ? '' : 'Today, I...'}
-                    value={this.props.entry ? this.props.entry.content : "Loading"}
+                    value={this.state.content}
                     onChange={this.linkState('content')}></textarea>
                 <input type='submit' value='Save' />
             </form>

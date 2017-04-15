@@ -7,7 +7,8 @@ import { getIdByDate, getDates } from '../../reducers/selectors';
 const mapStateToProps = (state, {date}) => ({
     id: getIdByDate(state, date),
     entry: state.entry,
-    date
+    date,
+    content: state.entry.content
 })
 
 const mapDispatchToProps = dispatch => ({
