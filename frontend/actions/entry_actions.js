@@ -35,3 +35,13 @@ export const fetchEntry = id => dispatch => (
     APIUtil.fetchEntry(id)
         .then(entry => dispatch(receiveEntry(entry)))
 )
+
+export const createEntry = entry => dispatch => (
+    APIUtil.addEntry(entry)
+        .then(entry => dispatch(receiveEntry(entry)))
+)
+
+export const updateEntry = (entry, id) => dispatch => (
+    APIUtil.updateEntry(entry, id)
+        .then(entry => dispatch(receiveEntry(entry)))
+)

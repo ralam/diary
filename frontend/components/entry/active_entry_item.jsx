@@ -26,11 +26,23 @@ class ActiveEntryItem extends React.Component{
     
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state.content)
         if (this.props.id === '-1') {
-            console.log('POST request');
+            const newEntry = {
+                content: this.state.content,
+                create_date: this.props.date
+            };
+            this.props.createEntry(newEntry)
+                .then(action => {
+                    this.setState({content: action.entry.content});
+                    this.props.requestAllEntries();
+                })
         } else {
-            console.log('PUT request');
+            const updatedEntry = {
+                content: this.state.content,
+                create_date: this.props.create_date
+            };
+            this.props.updateEntry(updatedEntry, this.props.id)
+                .then(action => this.setState({content: action.entry.content}))
         }
     }
 
