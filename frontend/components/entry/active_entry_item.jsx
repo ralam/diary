@@ -3,10 +3,11 @@ import React from 'react';
 class ActiveEntryItem extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {
-            content: ''
-        }
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.requestEntry(this.props.id)
     }
 
     linkState(key) {
@@ -36,8 +37,8 @@ class ActiveEntryItem extends React.Component{
                 <textarea 
                     rows='5'
                     cols='50' 
-                    placeholder={this.fetchPlaceholder()}
-                    value={this.state.content}
+                    placeholder={this.props.entry.content ? '' : 'Today, I...'}
+                    value={this.props.entry ? this.props.entry.content : "Loading"}
                     onChange={this.linkState('content')}></textarea>
                 <input type='submit' value='Save' />
             </form>

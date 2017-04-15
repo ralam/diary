@@ -7,20 +7,6 @@ class EntryItem extends React.Component{
         this.props.requestEntry(this.props.id);
     }
 
-    getEntryDate() {
-        if(this.props.entry === undefined) {
-            return '';
-        }
-        return this.props.entry.create_date;
-    }
-
-    getEntryContent() {
-        if(this.props.entry === undefined) {
-            return '';
-        }
-        return this.props.entry.content;
-    }
-
     render() {
         return(
             <div>

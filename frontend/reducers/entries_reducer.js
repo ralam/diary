@@ -1,4 +1,4 @@
-import { RECEIVE_ENTRY, RECEIVE_ENTRIES } from  '../actions/entry_actions';
+import { RECEIVE_ENTRIES } from  '../actions/entry_actions';
 import merge from 'lodash/merge';
 
 const initialState = {

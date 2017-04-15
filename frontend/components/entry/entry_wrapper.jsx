@@ -19,63 +19,48 @@ class EntryWrapper extends React.Component{
 
     componentDidMount() {
         this.props.requestAllEntries();
+        this.props.receiveDate(formatDate(new Date()))
     }
 
     linkState(key) {
         return(moment => this.setState({[key]: formatDate(moment._d)}));
     }
 
-    getEntryFromDate(date) {
-        const entryId = this.props.dates[date] || '-1';
-        if(entryId === '-1') {
-            if (date === this.props.today) {
-                return <ActiveEntryItemContainer hasEntry={false} />
-            } else {
-                return <EmptyEntryItem date={this.state.selectedDate} />
-            }
-        } else if (date === this.props.today) {
-            return <ActiveEntryItemContainer entry={this.props.entries[entryId]} hasEntry={true} />
-        } else {
-            return <EntryItemContainer entry={this.props.entry} />
-        }
-    }
-
     handleDateChange(moment) {
         const formattedDate = formatDate(moment._d);
         const entryId = this.props.dates[formattedDate] || '-1';
         if(entryId !== '-1') {
-            this.props.requestEntry(entryId).then(
-                this.setState({selectedDate: formattedDate})
-            )
-        } else (
-            this.setState({selectedDate: formattedDate})
-        )
+            this.props.requestEntry(entryId)
+        }
+
+        this.props.receiveDate(formattedDate)
     }
 
     getEntry() {
-        const entryId = this.props.dates[this.state.selectedDate] || '-1';
+        // console.log('dates')
+        // console.log(this.props.dates)
+        // console.log('selected date')
+        // console.log(this.props.selectedDate)
+        const entryId = this.props.dates[this.props.selectedDate] || '-1';
         if(entryId === '-1') {
-            if (this.state.selectedDate === this.props.today) {
-                return <ActiveEntryItemContainer hasEntry={false} />
+            if (this.props.selectedDate === this.props.today) {
+                return <ActiveEntryItemContainer hasEntry={false} date={this.props.selectedDate} />
             } else {
-                return <EmptyEntryItem date={this.state.selectedDate} />
+                return <EmptyEntryItem date={this.props.selectedDate} />
             }
-        } else if(this.props.entry === undefined) {
-            return <EmptyEntryItem date={this.state.selectedDate} />
-        } else if(this.state.selectedDate === this.props.today) {
-            return <ActiveEntryItemContainer hasEntry={true} entry={entry} />
+        } else if(this.props.selectedDate === this.props.today) {
+            return <ActiveEntryItemContainer hasEntry={true} date={this.props.selectedDate} />
         } else {
-            return <EntryItemContainer date={this.state.selectedDate} />
+            return <EntryItemContainer date={this.props.selectedDate} />
         }   
     }
 
     render() {
         return(
             <div>
-                {/*<EntryItemContainer date={this.state.selectedDate}/>*/}
                 { this.getEntry() }
                 <SingleDatePicker
-                    date={moment(this.state.selectedDate)} // momentPropTypes.momentObj or null
+                    date={moment(this.props.selectedDate)} // momentPropTypes.momentObj or null
                     onDateChange={moment => this.handleDateChange(moment)} // PropTypes.func.isRequired
                     focused={true} // PropTypes.bool
                     onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
