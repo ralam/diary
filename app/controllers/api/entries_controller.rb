@@ -1,4 +1,6 @@
 class Api::EntriesController < ApplicationController
+    # before_action :require_current_user!
+
     def create
         @entry = Entry.create(entry_params)
         if @entry.save
