@@ -20,7 +20,7 @@ class EntryWrapper extends React.Component{
 
     componentDidMount() {
         this.props.requestAllEntries();
-        this.props.receiveDate(formatDate(new Date()))
+        this.props.receiveDate(formatDate(new Date()));
     }
 
     linkState(key) {

@@ -10,7 +10,8 @@ const mapStateToProps = (state, {today}) => ({
     entries: allEntries(state),
     dates: getDates(state),
     today,
-    selectedDate: state.date
+    selectedDate: state.date,
+    session: state.session
 });
 
 const mapDispatchToProps = dispatch => ({
