@@ -63,6 +63,7 @@ class EntryWrapper extends React.Component{
                     isOutsideRange={() => false}
                     isDayHighlighted={day => this.props.dates.hasOwnProperty(formatDate(day._d))}
                     />
+                <button onClick={this.props.logout}>Logout</button>
             </div>
         )
     }

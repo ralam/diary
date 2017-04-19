@@ -20,8 +20,7 @@ class App extends React.Component{
         return(
             <div>
                 <p>Diary</p>
-                {main}
-                {/*<EntryWrapperContainer today={formatDate(new Date())}/>*/}
+                { main }
             </div>
         )
     }
