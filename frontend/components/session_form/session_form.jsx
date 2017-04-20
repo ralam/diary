@@ -17,21 +17,37 @@ class SessionForm extends React.Component{
         this.props.login({user});
     }
 
-    render() {
+    renderErrors() {
         return(
-            <form onSubmit={this.handleSubmit}>
-                <label htmlFor='username'>Username</label>
-                <input type='text'
-                        id='username'
-                        value={this.state.username}
-                        onChange={this.linkState('username')}></input>
-                <label htmlFor='password'>Password</label>
-                <input type='password'
-                        id='password'
-                        value={this.state.password}
-                        onChange={this.linkState('password')}></input>
-                <input type='submit' value='Login' />
-            </form>
+            <ul>
+                {this.props.errors.map((errorText, i) => (
+                    <li key={`error-${i}`}>{errorText}</li>
+                ))}
+            </ul>
+        )
+    }
+
+    render() {
+        console.log(this.props)
+        return(
+            <div>
+                {this.renderErrors()}
+                <form onSubmit={this.handleSubmit}>
+                    <label htmlFor='username'>Username</label>
+                    <input type='text'
+                            id='username'
+                            value={this.state.username}
+                            onChange={this.linkState('username')}
+                            required='true'></input>
+                    <label htmlFor='password'>Password</label>
+                    <input type='password'
+                            id='password'
+                            value={this.state.password}
+                            onChange={this.linkState('password')}
+                            required='true'></input>
+                    <input type='submit' value='Login' />
+                </form>
+            </div>
         )
     }
 }
