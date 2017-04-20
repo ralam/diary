@@ -14,7 +14,11 @@ class SessionForm extends React.Component{
     handleSubmit(e) {
         e.preventDefault();
         const user = this.state;
-        this.props.login({user});
+        if(e.currentTarget.id === 'signup') {
+            this.props.signup({user});
+        } else {
+            this.props.login({user});
+        }
     }
 
     renderErrors() {
@@ -28,25 +32,23 @@ class SessionForm extends React.Component{
     }
 
     render() {
-        console.log(this.props)
         return(
             <div>
                 {this.renderErrors()}
-                <form onSubmit={this.handleSubmit}>
-                    <label htmlFor='username'>Username</label>
-                    <input type='text'
-                            id='username'
-                            value={this.state.username}
-                            onChange={this.linkState('username')}
-                            required='true'></input>
-                    <label htmlFor='password'>Password</label>
-                    <input type='password'
-                            id='password'
-                            value={this.state.password}
-                            onChange={this.linkState('password')}
-                            required='true'></input>
-                    <input type='submit' value='Login' />
-                </form>
+                <label htmlFor='username'>Username</label>
+                <input type='text'
+                        id='username'
+                        value={this.state.username}
+                        onChange={this.linkState('username')}
+                        required='true'></input>
+                <label htmlFor='password'>Password</label>
+                <input type='password'
+                        id='password'
+                        value={this.state.password}
+                        onChange={this.linkState('password')}
+                        required='true'></input>
+                <button onClick={this.handleSubmit} id='login'>Login</button>
+                <button onClick={this.handleSubmit} id='signup'>Sign Up</button>
             </div>
         )
     }
