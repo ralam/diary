@@ -1,5 +1,5 @@
 class Api::EntriesController < ApplicationController
-    # before_action :require_current_user!
+    before_action :require_current_user!
 
     def create
         @entry = Entry.create(entry_params)
@@ -20,12 +20,14 @@ class Api::EntriesController < ApplicationController
     end
 
     def index
-        @entries = Entry.all
+        @entries = current_user.entries
     end
 
     def show
         @entry = Entry.find(params[:id])
-        if @entry
+        if @entry.user_id != current_user.id
+            render json: ["Invalid request"], status: 403
+        elsif @entry
             render json: @entry
         else
             render json: @entry.errors.full_messages, status: 422
@@ -35,6 +37,6 @@ class Api::EntriesController < ApplicationController
     private
 
     def entry_params
-        params.require(:entry).permit(:content, :create_date)
+        params.require(:entry).permit(:content, :create_date, :user_id)
     end
 end

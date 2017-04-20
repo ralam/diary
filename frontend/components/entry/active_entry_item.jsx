@@ -5,18 +5,18 @@ class ActiveEntryItem extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            content: this.props.content
+            content: this.props.content,
+            entry: null
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
         if(this.props.id === '-1') {
-            this.props.resetEntry();
             this.setState({content: ''})
         } else {
             this.props.requestEntry(this.props.id)
-                .then(action => this.setState({content: action.entry.content}))
+                .then(action => this.setState({content: action.entry.content, entry: action.entry}))
         }
     }
 
@@ -29,7 +29,8 @@ class ActiveEntryItem extends React.Component{
         if (this.props.id === '-1') {
             const newEntry = {
                 content: this.state.content,
-                create_date: this.props.date
+                create_date: this.props.date,
+                user_id: this.props.userId
             };
             this.props.createEntry(newEntry)
                 .then(action => {
@@ -52,7 +53,7 @@ class ActiveEntryItem extends React.Component{
                 <textarea 
                     rows='5'
                     cols='50' 
-                    placeholder={this.props.entry.content ? '' : 'Today, I...'}
+                    placeholder={this.state.content ? '' : 'Today, I...'}
                     value={this.state.content}
                     onChange={this.linkState('content')}></textarea>
                 <input type='submit' value='Save' />

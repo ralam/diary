@@ -8,6 +8,7 @@ import { formatDate } from '../../util/date_util';
 import EntryItemContainer from './entry_item_container';
 import EmptyEntryItem from './empty_entry_item';
 import ActiveEntryItemContainer from './active_entry_item_container';
+import NewEntryItemContainer from './new_entry_item_container';
 
 class EntryWrapper extends React.Component{
     constructor(props) {
@@ -16,6 +17,7 @@ class EntryWrapper extends React.Component{
             selectedDate: formatDate(new Date())
         }
         this.handleDateChange = this.handleDateChange.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
     componentDidMount() {
@@ -40,7 +42,7 @@ class EntryWrapper extends React.Component{
     getEntry() {
         const entryId = this.props.dates[this.props.selectedDate] || '-1';
         if (_.isEmpty(this.props.dates)) {
-            return <span>Loading</span>
+            return <NewEntryItemContainer date={this.props.selectedDate} />
         } else if(this.props.selectedDate === this.props.today) {
             return <ActiveEntryItemContainer date={this.props.selectedDate} />
         } else if (entryId === '-1') {
@@ -48,6 +50,11 @@ class EntryWrapper extends React.Component{
         } else {
             return <EntryItemContainer date={this.props.selectedDate} />
         }   
+    }
+
+    handleLogout() {
+        this.props.resetEntry();
+        this.props.logout()
     }
 
     render() {
@@ -63,7 +70,7 @@ class EntryWrapper extends React.Component{
                     isOutsideRange={() => false}
                     isDayHighlighted={day => this.props.dates.hasOwnProperty(formatDate(day._d))}
                     />
-                <button onClick={this.props.logout}>Logout</button>
+                <button onClick={this.handleLogout}>Logout</button>
             </div>
         )
     }

@@ -8,7 +8,8 @@ const mapStateToProps = (state, {date}) => ({
     id: getIdByDate(state, date),
     entry: state.entry,
     date,
-    content: state.entry.content
+    content: state.entry.content,
+    userId: state.session.currentUser.id
 })
 
 const mapDispatchToProps = dispatch => ({
