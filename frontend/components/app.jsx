@@ -13,9 +13,15 @@ class App extends React.Component{
             main = <SessionFormContainer />
         }
         return(
-            <div>
-                <p>Diary</p>
-                { main }
+            <div className='container'>
+                <div className='row'>
+                    <div className='col-md-2'>&nbsp;</div>
+                    <div className='col-md-8'>
+                        <p>Diary</p>
+                        { main }
+                    </div>
+                    <div className='col-md-2'>&nbsp;</div>
+                </div>
             </div>
         )
     }

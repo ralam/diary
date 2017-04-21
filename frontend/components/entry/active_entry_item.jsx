@@ -52,14 +52,18 @@ class ActiveEntryItem extends React.Component{
         return(
             <div>
                 <span>{formatToHumanDate(this.props.date)}</span>
-                <form onSubmit={this.handleSubmit}>              
-                    <textarea 
-                        rows='5'
-                        cols='50' 
-                        placeholder={this.state.content ? '' : 'Today, I...'}
-                        value={this.state.content}
-                        onChange={this.linkState('content')}></textarea>
-                    <input type='submit' value='Save' />
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-group">              
+                        <textarea 
+                            rows='5'
+                            placeholder={this.state.content ? '' : 'Today, I...'}
+                            value={this.state.content}
+                            onChange={this.linkState('content')}
+                            className='form-control'></textarea>
+                    </div>
+                    <div className="form-group">   
+                        <input type='submit' value='Save' className='form-control'/>
+                    </div>
                 </form>
             </div>
         )

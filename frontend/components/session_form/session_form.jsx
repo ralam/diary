@@ -35,20 +35,30 @@ class SessionForm extends React.Component{
         return(
             <div>
                 {this.renderErrors()}
-                <label htmlFor='username'>Username</label>
-                <input type='text'
-                        id='username'
-                        value={this.state.username}
-                        onChange={this.linkState('username')}
-                        required='true'></input>
+                <div className="form-group">
+                    <label htmlFor='username'>Username</label>
+                    <input type='text'
+                            id='username'
+                            value={this.state.username}
+                            onChange={this.linkState('username')}
+                            required='true'
+                            className='form-control'></input>
+                </div>
+                <div className="form-group">
                 <label htmlFor='password'>Password</label>
                 <input type='password'
                         id='password'
                         value={this.state.password}
                         onChange={this.linkState('password')}
-                        required='true'></input>
-                <button onClick={this.handleSubmit} id='login'>Login</button>
-                <button onClick={this.handleSubmit} id='signup'>Sign Up</button>
+                        required='true'
+                        className='form-control'></input>
+                </div>
+                <button onClick={this.handleSubmit}
+                    id='login'
+                    className='btn btn-default btn-block'>Login</button>
+                <button onClick={this.handleSubmit}
+                    id='signup'
+                    className='btn btn-default btn-block'>Sign Up</button>
             </div>
         )
     }

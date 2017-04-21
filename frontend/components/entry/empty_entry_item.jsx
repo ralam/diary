@@ -7,7 +7,7 @@ class EmptyEntryItem extends React.Component{
         return(
             <div>
                 <section>{formatToHumanDate(this.props.date)}</section>
-                <section>No entry for this date.</section>
+                <section className='entry-content'>No entry for this date.</section>
             </div>
         )
     }

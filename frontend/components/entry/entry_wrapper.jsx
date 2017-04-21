@@ -64,16 +64,18 @@ class EntryWrapper extends React.Component{
         return(
             <div>
                 { this.getEntry() }
-                <SingleDatePicker
-                    date={moment(this.props.selectedDate)} // momentPropTypes.momentObj or null
-                    onDateChange={moment => this.handleDateChange(moment)} // PropTypes.func.isRequired
-                    focused={true} // PropTypes.bool
-                    onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
-                    numberOfMonths={1}
-                    isOutsideRange={() => false}
-                    isDayHighlighted={day => this.props.dates.hasOwnProperty(formatDate(day._d))}
-                    />
-                <button onClick={this.handleLogout}>Logout</button>
+                <div className='calendar-container'>
+                    <SingleDatePicker
+                        date={moment(this.props.selectedDate)} // momentPropTypes.momentObj or null
+                        onDateChange={moment => this.handleDateChange(moment)} // PropTypes.func.isRequired
+                        focused={true} // PropTypes.bool
+                        onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
+                        numberOfMonths={1}
+                        isOutsideRange={() => false}
+                        isDayHighlighted={day => this.props.dates.hasOwnProperty(formatDate(day._d))}
+                        />
+                </div>
+                <button onClick={this.handleLogout} className='btn btn-default btn-block'>Logout</button>
             </div>
         )
     }

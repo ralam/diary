@@ -12,7 +12,7 @@ class EntryItem extends React.Component{
             <div>
                 <section>Entry Item</section>
                 <section>{formatToHumanDate(this.props.entry.create_date)}</section>
-                <section>{this.props.entry.content}</section>
+                <section className='entry-content'>{this.props.entry.content}</section>
             </div>
         )
     }
