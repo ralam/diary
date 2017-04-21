@@ -11,8 +11,8 @@ class EntryItem extends React.Component{
         return(
             <div>
                 <section>Entry Item</section>
-                <section>{this.props.entry ? this.props.entry.create_date : "Loading"}</section>
-                <section>{this.props.entry ? this.props.entry.content : "Loading"}</section>
+                <section>{formatToHumanDate(this.props.entry.create_date)}</section>
+                <section>{this.props.entry.content}</section>
             </div>
         )
     }

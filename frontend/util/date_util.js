@@ -1,8 +1,12 @@
 const monthsMap = ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const daysMap = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-export const formatToHumanDate = dateObj => {
-    return `${daysMap[dateObj.getDay()]}, ${monthsMap[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`
+export const formatToHumanDate = dateStr => {
+    let dateObj = new Date(dateStr);
+    const now = new Date();
+    const timeZoneOffset = now.getTimezoneOffset();
+    dateObj = new Date(dateObj.getTime() + timeZoneOffset*60000);
+    return `${daysMap[dateObj.getDay()]}, ${monthsMap[dateObj.getMonth() - 1]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`
 }
 
 export const formatDate = dateObj => {

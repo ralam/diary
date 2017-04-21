@@ -1,5 +1,5 @@
 import React from 'react';
-import { isEmpty } from 'lodash';
+import { formatToHumanDate } from '../../util/date_util';
 
 class NewEntryItem extends React.Component{
     constructor(props) {
@@ -30,15 +30,18 @@ class NewEntryItem extends React.Component{
 
     render() {
         return(
-            <form onSubmit={this.handleSubmit}>
-                <textarea 
-                    rows='5'
-                    cols='50' 
-                    placeholder='Today, I..'
-                    value={this.state.content}
-                    onChange={this.linkState('content')}></textarea>
-                <input type='submit' value='Save' />
-            </form>
+            <div>
+                <span>{formatToHumanDate(this.props.date)}</span>
+                <form onSubmit={this.handleSubmit}>
+                    <textarea 
+                        rows='5'
+                        cols='50' 
+                        placeholder='Today, I..'
+                        value={this.state.content}
+                        onChange={this.linkState('content')}></textarea>
+                    <input type='submit' value='Save' />
+                </form>
+            </div>
         )
     }
 }
