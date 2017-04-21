@@ -9,6 +9,7 @@ import EntryItemContainer from './entry_item_container';
 import EmptyEntryItem from './empty_entry_item';
 import ActiveEntryItemContainer from './active_entry_item_container';
 import NewEntryItemContainer from './new_entry_item_container';
+import { unsetSession, storeSession } from '../../util/session_storage_util';
 
 class EntryWrapper extends React.Component{
     constructor(props) {
@@ -23,6 +24,7 @@ class EntryWrapper extends React.Component{
     componentDidMount() {
         this.props.requestAllEntries();
         this.props.receiveDate(formatDate(new Date()));
+        storeSession(this.props.session);
     }
 
     linkState(key) {
@@ -53,8 +55,9 @@ class EntryWrapper extends React.Component{
     }
 
     handleLogout() {
+        unsetSession();
         this.props.resetEntry();
-        this.props.logout()
+        this.props.logout();
     }
 
     render() {
