@@ -33,13 +33,17 @@ class NewEntryItem extends React.Component{
             <div>
                 <span>{formatToHumanDate(this.props.date)}</span>
                 <form onSubmit={this.handleSubmit}>
+                    <div className="form-group">         
                     <textarea 
                         rows='5'
                         cols='50' 
                         placeholder='Today, I..'
                         value={this.state.content}
                         onChange={this.linkState('content')}></textarea>
-                    <input type='submit' value='Save' />
+                    </div>
+                    <div className="form-group">   
+                        <input type='submit' value='Save' />
+                    </div>
                 </form>
             </div>
         )

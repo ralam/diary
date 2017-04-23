@@ -9,8 +9,7 @@ class EntryItem extends React.Component{
 
     render() {
         return(
-            <div>
-                <section>Entry Item</section>
+            <div className='entry-container'>
                 <section>{formatToHumanDate(this.props.entry.create_date)}</section>
                 <section className='entry-content'>{this.props.entry.content}</section>
             </div>

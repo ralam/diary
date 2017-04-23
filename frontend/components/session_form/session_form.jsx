@@ -23,9 +23,9 @@ class SessionForm extends React.Component{
 
     renderErrors() {
         return(
-            <ul>
+            <ul className='list-unstyled'>
                 {this.props.errors.map((errorText, i) => (
-                    <li key={`error-${i}`}>{errorText}</li>
+                    <li className='bg-danger' key={`error-${i}`}>{errorText}</li>
                 ))}
             </ul>
         )

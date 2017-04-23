@@ -16,7 +16,7 @@ class App extends React.Component{
             <div className='container'>
                 <div className='row'>
                     <div className='col-md-2'>&nbsp;</div>
-                    <div className='col-md-8'>
+                    <div className='col-md-8 app-container'>
                         <p>Diary</p>
                         { main }
                     </div>

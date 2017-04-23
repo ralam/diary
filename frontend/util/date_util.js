@@ -6,7 +6,7 @@ export const formatToHumanDate = dateStr => {
     const now = new Date();
     const timeZoneOffset = now.getTimezoneOffset();
     dateObj = new Date(dateObj.getTime() + timeZoneOffset*60000);
-    return `${daysMap[dateObj.getDay()]}, ${monthsMap[dateObj.getMonth() - 1]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`
+    return `${daysMap[dateObj.getDay()]}, ${monthsMap[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`
 }
 
 export const formatDate = dateObj => {
