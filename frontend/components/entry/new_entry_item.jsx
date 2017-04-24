@@ -39,10 +39,10 @@ class NewEntryItem extends React.Component{
                         cols='50' 
                         placeholder='Today, I..'
                         value={this.state.content}
-                        onChange={this.linkState('content')}></textarea>
+                        onChange={this.linkState('content')} className='form-control'></textarea>
                     </div>
                     <div className="form-group">   
-                        <input type='submit' value='Save' />
+                        <input type='submit' value='Save' className='form-control'/>
                     </div>
                 </form>
             </div>
