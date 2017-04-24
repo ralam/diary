@@ -63,6 +63,12 @@ class EntryWrapper extends React.Component{
     render() {
         return(
             <div>
+                <div>
+                    <span>Diary</span>
+                    <button
+                        onClick={this.handleLogout}
+                        className='btn btn-default pull-right'>Logout</button>
+                </div>
                 { this.getEntry() }
                 <div className='calendar-container'>
                     <SingleDatePicker
@@ -75,7 +81,6 @@ class EntryWrapper extends React.Component{
                         isDayHighlighted={day => this.props.dates.hasOwnProperty(formatDate(day._d))}
                         />
                 </div>
-                <button onClick={this.handleLogout} className='btn btn-default btn-block'>Logout</button>
             </div>
         )
     }
