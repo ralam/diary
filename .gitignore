@@ -24,3 +24,4 @@ bundle.js.map
 # Ignore editor settings
 .vscode/
 
+npm-debug.log
