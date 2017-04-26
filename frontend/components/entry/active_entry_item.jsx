@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Notification from '../notification/notification';
 import { formatToHumanDate } from '../../util/date_util';
 
 class ActiveEntryItem extends React.Component{
@@ -7,7 +8,9 @@ class ActiveEntryItem extends React.Component{
         super(props);
         this.state = {
             content: this.props.content,
-            entry: null
+            entry: null,
+            notify: false,
+            notificationMessage: 'Notification saved!'
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -35,8 +38,14 @@ class ActiveEntryItem extends React.Component{
             };
             this.props.createEntry(newEntry)
                 .then(action => {
-                    this.setState({content: action.entry.content});
                     this.props.requestAllEntries();
+                    this.setState({
+                        content: action.entry.content,
+                        notify: true
+                    });
+                    setTimeout(() => {
+                        this.setState({notify: false})
+                    }, 3000)
                 })
         } else {
             const updatedEntry = {
@@ -44,13 +53,23 @@ class ActiveEntryItem extends React.Component{
                 create_date: this.props.create_date
             };
             this.props.updateEntry(updatedEntry, this.props.id)
-                .then(action => this.setState({content: action.entry.content}))
+                .then(action => {
+                    this.setState({
+                        content: action.entry.content,
+                        notify: true
+                    });
+                    setTimeout(() => {
+                        this.setState({notify: false})
+                    }, 3000)
+                });
         }
     }
 
     render() {
         return(
             <div>
+                {/*{ this.state.notify ? <Notification>{this.state.notificationMessage}</Notification> : <span />}*/}
+                <Notification visible={this.state.notify}>{this.state.notificationMessage}</Notification>
                 <span>{formatToHumanDate(this.props.date)}</span>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">              
