@@ -70,7 +70,8 @@ class EntryWrapper extends React.Component{
                         className='btn btn-default pull-right'>Logout</button>
                 </div>
                 { this.getEntry() }
-                <div className='calendar-container'>
+                <div className='col-md-2 col-sm-3 col-lg-3'></div>
+                <div className='calendar-container col-md-1'>
                     <SingleDatePicker
                         date={moment(this.props.selectedDate)} // momentPropTypes.momentObj or null
                         onDateChange={moment => this.handleDateChange(moment)} // PropTypes.func.isRequired

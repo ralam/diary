@@ -5,6 +5,7 @@ class SessionForm extends React.Component{
         super(props);
         this.state = {username: '', password: ''};
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.loginGuest = this.loginGuest.bind(this);
     }
 
     linkState(key) {
@@ -19,6 +20,11 @@ class SessionForm extends React.Component{
         } else {
             this.props.login({user});
         }
+    }
+
+    loginGuest(e) {
+        e.preventDefault();
+        this.props.login({user: {username: 'guest', password: 'password'}});
     }
 
     renderErrors() {
@@ -55,10 +61,12 @@ class SessionForm extends React.Component{
                 </div>
                 <button onClick={this.handleSubmit}
                     id='login'
-                    className='btn btn-default btn-block'>Login</button>
+                    className='btn btn-primary btn-block'>Log in</button>
                 <button onClick={this.handleSubmit}
                     id='signup'
-                    className='btn btn-default btn-block'>Sign Up</button>
+                    className='btn btn-primary btn-block'>Sign Up</button>
+                <button onClick={this.loginGuest}
+                    className='btn btn-info btn-block'>Log in as guest</button>
             </div>
         )
     }

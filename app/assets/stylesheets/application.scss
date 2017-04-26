@@ -16,6 +16,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.app-container {
+    height: 100vh;
+}
+
 .calendar-container {
     min-height: 425px;
 }
