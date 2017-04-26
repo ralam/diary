@@ -56,6 +56,7 @@ class EntryWrapper extends React.Component{
 
     handleLogout() {
         unsetSession();
+        this.props.resetEntries();
         this.props.resetEntry();
         this.props.logout();
     }

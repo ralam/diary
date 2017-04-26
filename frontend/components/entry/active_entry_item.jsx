@@ -8,7 +8,6 @@ class ActiveEntryItem extends React.Component{
         super(props);
         this.state = {
             content: this.props.content,
-            entry: null,
             notify: false,
             notificationMessage: 'Notification saved!'
         }
@@ -20,7 +19,7 @@ class ActiveEntryItem extends React.Component{
             this.setState({content: ''})
         } else {
             this.props.requestEntry(this.props.id)
-                .then(action => this.setState({content: action.entry.content, entry: action.entry}))
+                .then(action => this.setState({content: action.entry.content}))
         }
     }
 

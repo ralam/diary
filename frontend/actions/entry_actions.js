@@ -1,15 +1,9 @@
-import { getEntryByDate } from '../reducers/selectors';
 import * as APIUtil from '../util/api_util';
 
 export const RECEIVE_ENTRY = 'RECEIVE_ENTRY';
 export const RECEIVE_ENTRIES = 'RECEIVE_ENTRIES';
 export const RESET_ENTRY = 'RESET_ENTRY';
-
-const defaultEntry = {
-    content: '',
-    create_date: '',
-    id: '-1'
-}
+export const RESET_ENTRIES = 'RESET_ENTRIES'
 
 export const receiveEntry = entry => ({
     type: RECEIVE_ENTRY,
@@ -22,8 +16,11 @@ export const receiveEntries = entries => ({
 })
 
 export const resetEntry = () => ({
-    type: RESET_ENTRY,
-    entry: defaultEntry
+    type: RESET_ENTRY
+})
+
+export const resetEntries = () => ({
+    type: RESET_ENTRIES
 })
 
 export const fetchEntries = () => dispatch => (

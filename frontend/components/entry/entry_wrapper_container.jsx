@@ -3,7 +3,7 @@ import EntryWrapper from './entry_wrapper';
 
 import { allEntries, getDates } from '../../reducers/selectors';
 import { formatDate } from '../../util/date_util';
-import { fetchEntries, fetchEntry, resetEntry } from '../../actions/entry_actions';
+import { fetchEntries, fetchEntry, resetEntry, resetEntries } from '../../actions/entry_actions';
 import { receiveDate, receiveDates } from '../../actions/date_actions';
 import { logout } from './../../actions/session_actions';
 
@@ -22,7 +22,8 @@ const mapDispatchToProps = dispatch => ({
     receiveDate: date => dispatch(receiveDate(date)),
     receiveDates: dates => dispatch(receiveDates(dates)),
     logout: () => dispatch(logout()),
-    resetEntry: () => dispatch(resetEntry())
+    resetEntry: () => dispatch(resetEntry()),
+    resetEntries: () => dispatch(resetEntries())
 });
 
 export default connect(

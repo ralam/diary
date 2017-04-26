@@ -7,7 +7,7 @@ const entryDetailReducer = (state = {}, action) => {
         case RECEIVE_ENTRY:
             return merge({}, state, action.entry)
         case RESET_ENTRY:
-            return action.entry;
+            return {}
         default:
             return state;
     }

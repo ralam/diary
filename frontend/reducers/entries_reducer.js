@@ -1,4 +1,4 @@
-import { RECEIVE_ENTRIES } from  '../actions/entry_actions';
+import { RECEIVE_ENTRIES, RESET_ENTRIES } from  '../actions/entry_actions';
 import merge from 'lodash/merge';
 
 const initialState = {
@@ -25,6 +25,8 @@ const entriesReducer = (state = {}, action) => {
     switch(action.type) {
         case RECEIVE_ENTRIES:
             return merge({}, action.entries);
+        case RESET_ENTRIES:
+            return {}
         default:
             return state;
     }
