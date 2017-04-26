@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { formatToHumanDate } from '../../util/date_util';
 
 class NewEntryItem extends React.Component{

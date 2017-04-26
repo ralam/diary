@@ -39,13 +39,7 @@ class ActiveEntryItem extends React.Component{
             this.props.createEntry(newEntry)
                 .then(action => {
                     this.props.requestAllEntries();
-                    this.setState({
-                        content: action.entry.content,
-                        notify: true
-                    });
-                    setTimeout(() => {
-                        this.setState({notify: false})
-                    }, 3000)
+                    this.updateContent(action);
                 })
         } else {
             const updatedEntry = {
@@ -53,22 +47,23 @@ class ActiveEntryItem extends React.Component{
                 create_date: this.props.create_date
             };
             this.props.updateEntry(updatedEntry, this.props.id)
-                .then(action => {
-                    this.setState({
-                        content: action.entry.content,
-                        notify: true
-                    });
-                    setTimeout(() => {
-                        this.setState({notify: false})
-                    }, 3000)
-                });
+                .then(action => this.updateContent(action))
         }
+    }
+
+    updateContent(action) {
+        this.setState({
+            content: action.entry.content,
+            notify: true
+        });
+        setTimeout(() => {
+            this.setState({notify: false})
+        }, 3000)
     }
 
     render() {
         return(
             <div>
-                {/*{ this.state.notify ? <Notification>{this.state.notificationMessage}</Notification> : <span />}*/}
                 <Notification visible={this.state.notify}>{this.state.notificationMessage}</Notification>
                 <span>{formatToHumanDate(this.props.date)}</span>
                 <form onSubmit={this.handleSubmit}>
