@@ -26,7 +26,7 @@ Entry.create!(
 
 Entry.create!(
   content: %q(Decided to go into work today. My boss asked where I'd been for the past two months -- he had a point. I told him about Alaska and the pinapples
-  though and he forgot about it. Think I'm safe.'),
+  though and he forgot about it. Think I'm safe.),
   create_date: today - 4,
   user_id: 2  
 )
@@ -44,7 +44,7 @@ Entry.create!(
 )
 
 Entry.create!(
-  content: %q(Got back from Alaska today. The pinapples look ok. Just to be careful, I'm going to eat them all as soon as possible.'),
+  content: %q(Got back from Alaska today. The pinapples look ok. Just to be careful, I'm going to eat them all as soon as possible.),
   create_date: today - 9,
   user_id: 2
 )
