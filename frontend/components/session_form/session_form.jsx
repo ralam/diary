@@ -40,6 +40,7 @@ class SessionForm extends React.Component{
     render() {
         return(
             <div>
+                <h2>Diary</h2>
                 {this.renderErrors()}
                 <div className="form-group">
                     <label htmlFor='username'>Username</label>

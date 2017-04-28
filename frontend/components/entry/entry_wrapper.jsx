@@ -65,7 +65,7 @@ class EntryWrapper extends React.Component{
         return(
             <div>
                 <div>
-                    <span>Diary</span>
+                    Diary
                     <button
                         onClick={this.handleLogout}
                         className='btn btn-default pull-right'>Logout</button>
